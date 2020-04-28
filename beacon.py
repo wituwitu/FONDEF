@@ -12,9 +12,13 @@ s.setblocking(True)
 s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
 s.settimeout(10)
 
-#Send 10 messages to the Sigfox network to test connectivity
+submerged_time = 60
 
-for i in range(10):
+# Wait for the beacon to be submerged
+time.sleep(submerged_time)
+
+# Send 10 messages to the Sigfox network to test connectivity
+for i in range(100):
 	payload = bytes(str(i).encode())
 	print("Sending...")
 	s.send(payload)
