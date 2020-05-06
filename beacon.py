@@ -22,14 +22,15 @@ s.settimeout(10)
 
 c = 10
 submerged_time = 60
+n = 100
 
 # Wait for the beacon to be submerged
 time.sleep(submerged_time)
 
 # Send 10 messages to the Sigfox network to test connectivity
-for i in range(100):
-	string = "{}{}".format(zfill(str(c), 3), zfill(i, 3))
-	payload = bytes(str(i).encode())
+for i in range(n):
+	string = "{}{}".format(zfill(str(c), 3), zfill(str(i), 3))
+	payload = bytes(string.encode())
 	print("Sending...")
 	s.send(payload)
 	print("Sent.")
