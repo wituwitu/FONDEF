@@ -1,6 +1,7 @@
 import requests
 import base64
 import csv
+import json
 
 
 def get_messages(device_id, limit, username, password):
@@ -24,7 +25,9 @@ def get_messages(device_id, limit, username, password):
 	return msg_array
 
 
-msg_array = get_messages("4d5a87", 100, "5dc465f4e833d941f6cc4cd3", "0f245424186a3148cc2d5bbb240509f9")
+with open("datos.json") as js:
+	datos = json.load(js)
+msg_array = get_messages(datos['device_id'], 100, datos["username"], datos["password"])
 
 # (here we assume that messages can't be received out of order (the last message payload is always greater))
 # Check if msg_array is naturally sorted from low to high
